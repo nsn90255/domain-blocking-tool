@@ -298,7 +298,7 @@ public class Project_main {
 	}
 	public static void version() {
 		// print the version
-		System.out.println("Project ALPHA 1.1");
+		System.out.println("dbt 1.0.0");
 	}
 	public static boolean checkIfCanIgnore() {
 		// get last line from log; store in lastLine
