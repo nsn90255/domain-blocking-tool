@@ -372,7 +372,7 @@ public class Project_main {
 	}
 	public static void copyDefaults(File blocklist) {
 		// file with defaults to be copied over
-		File defaults = new File("/var/lib/project/defaults.conf");
+		File defaults = new File("/var/lib/dbt/defaults.conf");
 		try{
 			BufferedWriter wr = new BufferedWriter(new FileWriter(blocklist, true));
 			BufferedReader rd = new BufferedReader(new FileReader(blocklist));
