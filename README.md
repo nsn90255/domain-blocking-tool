@@ -9,8 +9,8 @@ You will need openjdk installed on your system.
 # Post install set up
 Allow members of a specific group (users as an example here) to use the ignore flag without root permissions. Same for the graphical one -g.
 ```
-%users ALL=(ALL) NOPASSWD: /usr/local/bin/project -i
-%users ALL=(ALL) NOPASSWD: /usr/local/bin/project -g
+%users ALL=(ALL) NOPASSWD: /usr/local/bin/dbt -i
+%users ALL=(ALL) NOPASSWD: /usr/local/bin/dbt -g
 ```
 ## Note
 This has only been tested on debian and artix(openrc)

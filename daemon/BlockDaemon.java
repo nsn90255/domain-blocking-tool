@@ -21,16 +21,12 @@ public class BlockDaemon {
         unblockCommand.command("bash", "-c", unblock);
 
         try {
-            // Step 1: Read the configuration file
             Map<Integer, String> blockDays = readBlocklistConfig();
 
-            // Step 2: Read the log file and process ignored timestamps
             List<LocalDateTime> ignoredTimes = readLogFile();
 
-            // Step 3: Determine the current system time
             LocalDateTime currentTime = LocalDateTime.now();
 
-            // Step 4: Check if an ignore happened within the last hour
             for (LocalDateTime ignoreTime : ignoredTimes) {
                 if (Duration.between(ignoreTime, currentTime).toHours() < 1) {
                     System.out.println("Unblock for the remainder of the time (until " +
@@ -38,15 +34,13 @@ public class BlockDaemon {
                     System.out.println("Running: sudo dbt -u");
 		    Process unblockProcess = unblockCommand.start();
 		    unblockProcess.waitFor();
-                    return; // We will unblock and exit the program
+                    return;
                 }
             }
 
-            // Step 5: If it's a blocked day, run the block command
             int dayOfWeek = currentTime.getDayOfWeek().getValue();
             String blockSetting = blockDays.getOrDefault(dayOfWeek, "0000-0000");
 
-            // Check if it's a "block" day and run the block command
             if (blockSetting.equals("all") || blockSetting.equals("0000-0000")) {
                 System.out.println("Running: sudo dbt -b");
 		Process blockProcess = blockCommand.start();
@@ -74,7 +68,7 @@ public class BlockDaemon {
 
             if (inDaysSection) {
                 if (line.equals("[Domains]")) {
-                    break; // Stop reading the days section if we hit the domains section
+                    break;
                 }
 
                 if (!line.startsWith("#") && line.contains("=")) {
